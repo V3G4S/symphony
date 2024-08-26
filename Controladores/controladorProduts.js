@@ -9,8 +9,8 @@ const listProdutos = async (req,res) => {
 }
 const getProduto = async (req, res) => {
     const _id = req.params.id
-    const lista_produtos = db.produtos
-    const produto = lista_produtos.find(
+    const listaProdutos = db.produtos
+    const produto = listProdutos.find(
         (produto) => produto.id == _id
         )
     produto ? res.send(produto) : res.status(404).send({error:'not found'})
@@ -33,8 +33,8 @@ const createProduto = async (req,res) => {
 const updateProduto = async (req,res) => {
     const _id = req.params.id
     const dados = req.body
-    const lista_produtos = db.produtos
-    const produto = lista_produtos.find(
+    const listaProdutos = db.produtos
+    const produto = listaProdutos.find(
         (produto) => produto.id == _id
         )
     if (!produto || !dados) {
@@ -44,8 +44,8 @@ const updateProduto = async (req,res) => {
 }
 const deleteProduto = async (req,res) => {
     const _id = req.params.id
-    const lista_produtos = db.produtos
-    const produto = lista_produtos.find(
+    const listaProdutos = db.produtos
+    const produto = listaProdutos.find(
         (produto) => produto.id == _id
         )
     // deletar o produto

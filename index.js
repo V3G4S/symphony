@@ -9,4 +9,4 @@ app.use(bodyParser.json())
 app.use('/produtos', rotasProdutos)
 app.use('/clientes', rotasClientes)
 
-app.listen(8000)
+app.listen(6000)
