@@ -1,12 +1,12 @@
 const express = require('express')
 const app = express()
 const bodyParser = require('body-parser')
-const rotas_produtos = require('./rotasProduts')
-
+const rotasProdutos = require('./Rotas/rotasProduts')
+const rotasClientes = require('./Rotas/rotasClientes')
 
 app.use(bodyParser.json())
 
-app.use('/produtos', rotas_produtos)
-app.use('/clientes', clientes)
+app.use('/produtos', rotasProdutos)
+app.use('/clientes', rotasClientes)
 
 app.listen(8000)

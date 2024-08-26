@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const controlador = require('./Controladores/controlador')
+const controlador = require('../Controladores/controladorProdut')
 
 
 router.get('/produtos', controlador.listProdutos)
