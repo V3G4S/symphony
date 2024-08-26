@@ -66,20 +66,6 @@
                 "estado": "SP",
                 "cep": "01234-567"
             }
-        },
-        {
-            "id": 2,
-            "nome": "Maria Oliveira",
-            "email": "maria.oliveira@example.com",
-            "senha": "abcdef",
-            "endereco": {
-                "rua": "Rua das Flores",
-                "numero": 456,
-                "bairro": "Jardim",
-                "cidade": "Rio de Janeiro",
-                "estado": "RJ",
-                "cep": "98765-432"
-            }
         }
     ],
     "pedidos": [

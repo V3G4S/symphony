@@ -17,15 +17,15 @@ const getCliente = async (req, res) => {
 }
 const createCliente = async (req,res) => {
     const dados = req.body
-    if(!dados.nome || !dados.email || dados.senha) {
-       return res.status(406).send({error:'Nome, email e senha devem ser informados!'})
+    if(!dados.email || !dados.senha) {
+        res.status(406).send({error:'Email e senha deve ser informado'})
     }
     const _id = uuidv4()
     const senhaCrypt = await bcryptjs.hashSync(dados.senha, 10)
     dados.senha = senhaCrypt
     dados.id = _id
     db.clientes.push(dados)
-    fs.writeFile('./db.json', JSON.stringify(db), (err) => {
+    fs.writeFile('../db.json', JSON.stringify(db), (err) => {
         if (err){
             res.status(500).send({error:'erro no servidor'})
         }
