@@ -70,7 +70,7 @@ const deleteCliente = async (req,res) => {
             res.status(500).send({error:'erro no servidor'})
         }
      })
-    res.status(204)
+     res.status(204).send()
 }
 
 

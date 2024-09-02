@@ -48,6 +48,7 @@ const deleteProduto = async (req,res) => {
     const produto = listaProdutos.find(
         (produto) => produto.id == _id
         )
+        res.status(204).send()
     // deletar o produto
 }
 
