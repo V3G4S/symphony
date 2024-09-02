@@ -11,3 +11,9 @@ describe('GET /clientes', ()=>{
         expect(res.body).toBeDefined();
     })
 })
+
+describe('POST /clientes', () => {
+    it('criar cliente com sucesso', async () => {
+        const rest = (await request(app).post('/clientes')).body()
+    })
+})
