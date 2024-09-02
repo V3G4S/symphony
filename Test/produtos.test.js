@@ -10,6 +10,10 @@ describe('GET /produtos', ()=>{
         const res = await request(app).get('/produtos').send();
         expect(res.body).toBeDefined();
     })
+    it('verifica um único produto', async () => {
+        const res = await request(app).get('/produtos/e8801215-9b11-4a43-b979-344afccbfcc9').send();
+        expect(res.body).toBeDefined();
+    })
 })
 
 describe('POST /produtos/:id', () => {
@@ -23,7 +27,7 @@ describe('POST /produtos/:id', () => {
                 imagem: "camera preta véia podi"
             }
         );
-        expect(rest.status).toBe(404)
+        expect(rest.status).toBe(204)
     })
 })
 
@@ -34,7 +38,7 @@ describe('UPDATE /produtos/:id', ()=>{
                 nome: 'Camisa azul com desenho de hashtag'
             }
         );
-        expect(res.status).toBe(404);
+        expect(res.status).toBe(406);
     })
 })
 

@@ -10,25 +10,28 @@ describe('GET /clientes', ()=>{
         const res = await request(app).get('/clientes').send();
         expect(res.body).toBeDefined();
     })
+    it('verifica um único cliente', async () => {
+        const res = await request(app).get('/clientes/1').send();
+        expect(res.body).toBeDefined();
+    })
 })
 
 describe('POST /clientes/:id', () => {
     it('Criar cliente com sucesso', async () =>{
         const rest = await request(app).post('/clientes').send(
             {
-            id: '2',
             nome: 'Robert Ocarlos',
             email: 'robertao@gmail.com',
             senha: '4002-8922'
             }
         );
-        expect(rest.status).toBe(404)
+        expect(rest.status).toBe(204)
     })
 })
 
 describe('UPDATE /clientes/:id', ()=>{
     it('Atualizar nome do cliente com sucesso', async () => {
-        const res = await request(app).post('/clientes/').send(
+        const res = await request(app).post('/clientes/1').send(
             {
                 nome: 'ramon update'
             }
