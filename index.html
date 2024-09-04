@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adivinhe a Palavra</title>
+    <link rel="stylesheet" href="estilos.css">
+    <style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        overflow: hidden; /* Para evitar barras de rolagem durante a animação */
+    }
+
+    .container-jogo {
+        text-align: center;
+        padding: 20px;
+        background-color: white;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        z-index: 10; /* Para garantir que a interface do jogo esteja acima da animação */
+        position: relative;
+    }
+
+    h1 {
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+
+    #palavraContainer {
+        font-size: 24px;
+        margin-bottom: 20px;
+        letter-spacing: 5px;
+    }
+
+    #entradaPalpite {
+        padding: 10px;
+        font-size: 18px;
+        width: 50px;
+        text-align: center;
+    }
+
+    #botaoPalpite {
+        padding: 10px 20px;
+        font-size: 18px;
+        margin-left: 10px;
+        cursor: pointer;
+    }
+
+    #mensagem {
+        margin-top: 20px;
+        font-size: 18px;
+    }
+
+    #animacaoGolfinhos {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none; /* Para que a animação não interfira na interação com o jogo */
+        overflow: hidden;
+        display: none; /* Inicialmente oculto */
+    }
+
+    .golfinho {
+        position: absolute;
+        width: 100px;
+        animation: pular 5s ease-in-out infinite;
+        opacity: 0.8;
+    }
+
+    .golfinho img {
+        width: 100%;
+    }
+
+    @keyframes pular {
+        0% {
+            transform: translateY(100vh) rotate(0deg);
+        }
+        50% {
+            transform: translateY(-20vh) rotate(360deg);
+        }
+        100% {
+            transform: translateY(100vh) rotate(720deg);
+        }
+    }
+
+
+    </style>
+</head>
+<body>
+    <div class="container-jogo">
+        <h1>Adivinhe a Palavra</h1>
+        <div id="palavraContainer"></div>
+        <input type="text" id="entradaPalpite" maxlength="1" placeholder="Digite uma letra">
+        <button id="botaoPalpite">Adivinhar</button>
+        <p id="mensagem"></p>
+    </div>
+
+    <div id="animacaoGolfinhos"></div>
+    <audio id="audioComemoracao" src="comemoracao.mp4.mp4"></audio>
+    <script src="script.js"></script>
+</body>
+</html>
