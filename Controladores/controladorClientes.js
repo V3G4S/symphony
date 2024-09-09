@@ -40,7 +40,7 @@ const updateCliente = async (req,res) => {
         (cliente) => cliente.id == _id
     )
     if (!cliente || !dados){
-    res.status(404).send({error: "not found"})
+    return res.status(404).send({error: "not found"})
     }
     for(const dado in dados){
      if(!(dado in cliente)){
@@ -49,12 +49,12 @@ const updateCliente = async (req,res) => {
        }
        cliente[dado] = dados[dado];
     }
-    fs.writeFile('.db.json', JSON.stringify(db), (err) => {
+    fs.writeFile('../db.json', JSON.stringify(db), (err) => {
        if (err){
-           res.status(500).send({error:'erro no servidor'})
+           return res.status(500).send({error:'erro no servidor'})
        }
     })
-    res.status(500).send({cliente})
+    return res.status(500).send({cliente})
 }
 
 const deleteCliente = async (req,res) => {

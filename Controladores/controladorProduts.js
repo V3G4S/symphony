@@ -9,8 +9,8 @@ const listProdutos = async (req,res) => {
 }
 const getProduto = async (req, res) => {
     const _id = req.params.id
-    const listaProdutos = db.produtos
-    const produto = listProdutos.find(
+    const lista_produtos = db.produtos
+    const produto = lista_produtos.find(
         (produto) => produto.id == _id
         )
     produto ? res.send(produto) : res.status(404).send({error:'not found'})
@@ -18,17 +18,17 @@ const getProduto = async (req, res) => {
 const createProduto = async (req,res) => {
     const dados = req.body
     if(!dados.nome || !dados.preco) {
-        res.status(406).send({error:'Nome e preço deve ser informado'})
+        return res.status(406).send({error:'Nome e preço deve ser informado'})
     }
     const _id = uuidv4()
     dados.id = _id
     db.produtos.push(dados)
     fs.writeFile('./db.json', JSON.stringify(db), (err) => {
         if (err){
-            res.status(500).send({error:'erro no servidor'})
+            return res.status(500).send({error:'erro no servidor'})
         }
     })
-    res.status(204).send()
+    return res.status(204).send()
 }
 const updateProduto = async (req,res) => {
     const _id = req.params.id
@@ -44,12 +44,18 @@ const updateProduto = async (req,res) => {
 }
 const deleteProduto = async (req,res) => {
     const _id = req.params.id
-    const listaProdutos = db.produtos
-    const produto = listaProdutos.find(
-        (produto) => produto.id == _id
-        )
-        res.status(204).send()
-    // deletar o produto
+    const lista_produtos = db.produtos
+    const produto = lista_produtos.find(
+        (produto) => produto?.id == _id
+    )
+    var idx = lista_produtos.indexOf(produto)
+    lista_produtos.splice(idx,1)    
+    fs.writeFile('./db.json', JSON.stringify(db), (err) => {
+        if (err){
+            return res.status(500).send({error:'erro no servidor'})
+        }
+     })
+    return res.status(204).send()
 }
 
 module.exports = {listProdutos, getProduto, createProduto, updateProduto, deleteProduto}
